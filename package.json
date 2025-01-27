@@ -2,6 +2,7 @@
   "dependencies": {
     "puppeteer": "^24.1.1"
   },
+  "type": "module",
   "name": "scraping-with-puppeteer",
   "version": "1.0.0",
   "main": "app.js",
