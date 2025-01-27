@@ -1,4 +1,5 @@
 import puppeteer from "puppeteer";
+import fs from 'node:fs';
 
 async function start() {
 
@@ -9,20 +10,37 @@ async function start() {
     await page.goto(url);
 
     let posts = await page.evaluate(()=>{
+
         let items = [];
+
         document.querySelectorAll('li > article > h3 > a').forEach((item)=>{
-            let post = {'titulo' : item.title};
+            let post = {'title' : item.title};
             items.push(post);
         });
+
         document.querySelectorAll('.price_color').forEach((item, i)=>{
-            items[i].preco = item.textContent
-            // items.push({preço: item.textContent});
+            items[i].price = item.textContent
         });
 
         return items;
     });
 
-    console.log(posts);
+    
+    await posts.forEach((post)=>{
+
+        let data = `titulo: ${post.title}\npreço: ${post.price}\n--------------------------------\n`;
+
+        fs.appendFile('posts.txt',data , (err)=>{
+            if(err){
+    
+                console.error(err);
+            }else{
+                console.log('salvo com sucesso.');
+            };
+    
+        });
+    });
+
 
     await browser.close();
 };
