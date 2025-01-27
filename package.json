@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "puppeteer": "^24.1.1"
+  },
+  "name": "scraping-with-puppeteer",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/geraldo-dev/scraping-with-puppeteer.git",
+  "author": "geraldo ferreira <geraldosousadev@gmail.com>",
+  "license": "MIT"
+}
